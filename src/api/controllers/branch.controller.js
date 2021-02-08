@@ -16,3 +16,23 @@ exports.getBranches = (req, res) => {
     })
     
 }
+
+exports.createBranch = (req, res) => {
+    const branchReqData = new BranchModel(req.body);
+    console.log('branchReqData', branchReqData);
+
+    //check null 
+    if(req.body.contructor === Object && Object.keys(req.body).length === 0){
+        res.send(400).send({success: false, message: 'please fill all fields'});
+    }
+        else{
+
+                    BranchModel.createBranch(branchReqData, (err, branch) => {
+                    if(err)
+                    res.send(err);
+                    res.json({status : true, message: 'Branch Created Successfully', data: branch.insertId})
+
+            })
+            
+        }
+}

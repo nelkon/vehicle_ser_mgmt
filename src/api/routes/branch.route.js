@@ -4,6 +4,7 @@ const router = express.Router();
 const branchController = require('../controllers/branch.controller');
 
 router.get('/', branchController.getBranches);
+router.post('/',branchController.createBranch );
 
 
 module.exports = router;

@@ -30,4 +30,16 @@ Branch.getAllBranches = (result) =>{
     })
 }
 
+Branch.createBranch = (branchReqData, result) => {
+    dbConn.query('INSERT INTO service_branch SET ?', branchReqData, (err, res) => {
+        if(err){
+            console.log('Error while inserting', err);
+            result(null, err);
+        } else {
+            console.log('branch inserted successfully');
+            result(null, res);
+        }
+})
+}
+
 module.exports = Branch;
