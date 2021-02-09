@@ -12,9 +12,9 @@ const port = process.env.PORT || 5000;
 
 app.use(bodyparser.json());
 
-app.get('', (req, res)=>{
-    res.send("Hello world");
-});
+// app.get('', (req, res)=>{
+//     res.send("Hello world");
+// });
 
 //import branch router
 
@@ -22,6 +22,6 @@ const branchRoutes = require('./src/api/routes/branch.route');
 
 app.use('/api/branch', branchRoutes);
 
-app.use('/api/createbranch')
+app.use('/api/createbranch', branchRoutes);
 
 app.listen(port, () => console.log(`Listen on Port ${port}`))

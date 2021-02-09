@@ -17,7 +17,7 @@ exports.getBranches = (req, res) => {
     
 }
 
-exports.createBranch = (req, res) => {
+exports.createNewBranch = (req, res) => {
     const branchReqData = new BranchModel(req.body);
     console.log('branchReqData', branchReqData);
 
