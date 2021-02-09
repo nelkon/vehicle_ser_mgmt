@@ -18,7 +18,7 @@ exports.getBranches = (req, res) => {
 }
 
 exports.createNewBranch = (req, res) => {
-    const branchReqData = new BranchModel(req.body);
+    const branchReqData =  BranchModel(req.body);
     console.log('branchReqData', branchReqData);
 
     //check null 
@@ -27,7 +27,7 @@ exports.createNewBranch = (req, res) => {
     }
         else{
 
-                    BranchModel.createBranch(branchReqData, (err, branch) => {
+                    BranchModel.createNewBranch(branchReqData, (err, branch) => {
                     if(err)
                     res.send(err);
                     res.json({status : true, message: 'Branch Created Successfully', data: branch.insertId})

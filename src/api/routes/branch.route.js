@@ -8,7 +8,7 @@ const branchController = require('../controllers/branch.controller');
 router.get('/', branchController.getBranches);
 
 //create new branch
-router.post('/id', branchController.createNewBranch);
+router.post('/', branchController.createNewBranch);
 
 
 

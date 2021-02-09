@@ -31,7 +31,7 @@ Branch.getAllBranches = (result) =>{
 }
 
 Branch.createNewBranch = (branchReqData, result) => {
-    dbConn.query('INSERT INTO service_branch SET ?', branchReqData,(err, res) => {
+    dbConn.query('INSERT INTO service_branch SET ?' , branchReqData,(err, res) => {
         if(err){
             console.log('Error while inserting', err);
             result(null, err);
