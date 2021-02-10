@@ -1,7 +1,7 @@
-const express = require('express');
+// const express = require('express');
 var dbConn = require('../data_access/db.config');
 
-var Branch = (branch) => {
+var Branch = function (branch)  {
 
     
     this.service_branch_id       = branch.service_branch_id;
@@ -39,7 +39,7 @@ Branch.createNewBranch = (branchReqData, result) => {
             console.log('branch inserted successfully');
             result(null, res);
         }
-    });
+    })
 }
 
 module.exports = Branch;

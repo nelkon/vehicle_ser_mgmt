@@ -1,5 +1,5 @@
 
-const BranchModel = require('./.././../business/branch.model')
+const BranchModel = require('./.././../business/branch.model');
 
 
 
@@ -18,7 +18,7 @@ exports.getBranches = (req, res) => {
 }
 
 exports.createNewBranch = (req, res) => {
-    const branchReqData =  BranchModel(req.body);
+    const branchReqData = new BranchModel(req.body);
     console.log('branchReqData', branchReqData);
 
     //check null 
