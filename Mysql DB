@@ -1,0 +1,281 @@
+
+CREATE TABLE service_order(
+    service_order_id BIGINT(20) NOT NULL,
+    service_order_dt DATE NOT NULL,
+    service_order_type_id BIGINT(20) NOT NULL,
+    service_call_id BIGINT(20) NOT NULL,
+    service_schedule_id BIGINT(20) NOT NULL,
+    customer_id BIGINT(20) NOT NULL,
+    customer_vehicle_id BIGINT(20) NOT NULL,
+    service_technician_id BIGINT(20) NOT NULL,
+    target_dt DATE NOT NULL,
+    actual_dt DATE NOT NULL,
+    solution_given VARCHAR(500) NOT NULL,
+    remarks VARCHAR(200) NOT NULL,
+    trx_status_cd VARCHAR(30) NOT NULL,
+    service_branch_id BIGINT(20) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+    UNIQUE INDEX service_order_idx01 (service_order_id)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE customer(
+    customer_id BIGINT(20) NOT NULL,
+    customer_name VARCHAR(30) NOT NULL,
+    customer_address_line1 VARCHAR(30) NOT NULL,
+    customer_address_line2 VARCHAR(30) NOT NULL,
+    city_name VARCHAR(30) NOT NULL,
+    customer_mobile_no VARCHAR(15) NOT NULL,
+    customer_email VARCHAR(30) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+     UNIQUE  INDEX  customer_idx01(customer_id)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+CREATE TABLE service_technician(
+    service_technician_id BIGINT(20) NOT NULL,
+    technician_name VARCHAR(30) NOT NULL,
+    technician_mobile_no VARCHAR(15) NOT NULL,
+    technician_email VARCHAR(30) NOT NULL,
+    service_branch_id BIGINT(20) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+        UNIQUE INDEX  service_technician_idx01(service_technician_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE service_branch(
+    service_branch_id BIGINT(20) NOT NULL,
+    branch_name VARCHAR(30) NOT NULL,
+    branch_location VARCHAR(15) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+    UNIQUE INDEX  service_branch_idx01(service_branch_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+CREATE TABLE service_schedule(
+    service_schedule_id BIGINT(20) NOT NULL,
+    customer_id BIGINT(20) NOT NULL, 
+    customer_vehicle_id BIGINT(20) NOT NULL, 
+    schedule_no BIGINT(20) NOT NULL,
+    schedule_dt DATE NOT NULL,
+    service_technician_id BIGINT(20) NOT NULL, 
+    actual_service_dt DATE NOT NULL,
+    trx_status_cd VARCHAR(30) NOT NULL, 
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+        UNIQUE INDEX service_schedule_idx01(service_schedule_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE service_call(
+    service_call_id BIGINT(20) NOT NULL,
+    service_call_dt DATE NOT NULL,
+    customer_id BIGINT(20) NOT NULL, 
+    mobile_no VARCHAR(15) NOT NULL,
+    customer_vehicle_id BIGINT(20) NOT NULL, 
+    reported_issue VARCHAR(500) NOT NULL,
+    actual_issue VARCHAR(500) NOT NULL,
+    remarks VARCHAR(500) NOT NULL,
+    trx_status_cd VARCHAR(30) NOT NULL, 
+    service_order_dt BIGINT(20) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+        UNIQUE INDEX service_call_idx01(service_call_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE service_order_type(
+    service_order_type_id BIGINT(20) NOT NULL,
+    service_order_type_dsc VARCHAR(500) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+ 
+       UNIQUE INDEX  service_order_type_idx01(service_order_type_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE customer_vehicle(
+    customer_vehicle_id BIGINT(20) NOT NULL,
+    customer_id BIGINT(20) NOT NULL,
+    vehicle_type_id BIGINT(20) NOT NULL,
+    vehicle_make_id BIGINT(20) NOT NULL,
+    vehicle_model_id BIGINT(20) NOT NULL,
+    registration_no VARCHAR(20) NOT NULL,
+    vehicle_dsc VARCHAR(50) NOT NULL,
+    purchased_dt DATE NOT NULL,
+    last_service_dt DATE NOT NULL,
+    next_service_dt DATE NOT NULL,
+    warranty_add DATE NOT NULL,
+     free_service_count INT(20) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+       UNIQUE INDEX  customer_vehicle_idx01(customer_vehicle_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE vehicle_type(
+    vehicle_type_id BIGINT(20) NOT NULL,
+    vehicle_type_dsc VARCHAR(500) NOT NULL, 
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+       UNIQUE INDEX  vehicle_type_idx01(vehicle_type_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE vehicle_make(
+    vehicle_make_id BIGINT(20) NOT NULL,
+    vehicle_make_dsc VARCHAR(500) NOT NULL, 
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+       UNIQUE INDEX  vehicle_make_idx01(vehicle_make_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE vehicle_model(
+    vehicle_model_id BIGINT(20) NOT NULL,
+    vehicle_model_dsc VARCHAR(500) NOT NULL, 
+    vehicle_make_id BIGINT(20) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+        UNIQUE INDEX vehicle_model_idx01(vehicle_model_id)
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
+
+
+
+CREATE TABLE system_user(
+    system_user_id BIGINT(20) NOT NULL,
+    user_name VARCHAR(50) NOT NULL, 
+    login_name VARCHAR(100) NOT NULL, 
+    email_address VARCHAR(100) NOT NULL, 
+    mobile_no VARCHAR(100) NOT NULL,
+    txn_created_by BIGINT(20) NOT NULL,
+    txn_created_dt DATETIME NOT NULL,
+    txn_created_from VARCHAR(30) NOT NULL,
+    txn_last_updated_by BIGINT(20) NOT NULL,
+    txn_last_updated_dt DATETIME NOT NULL,
+    txn_last_updated_from VARCHAR(30) NOT NULL,
+    txn_status_id BIGINT(20) NOT NULL,
+
+        UNIQUE INDEX system_user_idx01(system_user_id),
+               
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;
